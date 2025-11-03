@@ -24,16 +24,20 @@ public class Main : MonoBehaviour
     {
         int ndx = Random.Range(0, prefabEnemies.Length);
         GameObject go= Instantiate<GameObject>(prefabEnemies[ndx]);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        float enemeyInset = enemyInsetDefault;
+        if (go.GetComponent<BoundsCheck>() != null) { 
+            enemeyInset = Mathf.Abs(go.GetComponent<BoundsCheck>().radius);
+        }
+        Vector3 pos = Vector3.zero;
+        float xMin = -bndCheck.camWidth + enemeyInset;
+        float xMax = bndCheck.camWidth - enemeyInset;
+        pos.x = Random.Range(xMin, xMax);
+        pos.y = bndCheck.camHeight + enemeyInset;
+        go.transform.position = pos;
+
+        Invoke(nameof(SpawnEnemy), 1f / enemySpawnPerSecond);
+
     }
+ 
 }

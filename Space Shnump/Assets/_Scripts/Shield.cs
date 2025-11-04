@@ -20,7 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int currlevel = Mathf.FloorToInt(Hero.S.shiedldLevel);
+        int currlevel = Mathf.FloorToInt(Hero.S.shieldLevel);
         if (levelShown != currlevel) { 
             levelShown = currlevel;
             mat.mainTextureOffset = new Vector2(0f * levelShown, 0);
